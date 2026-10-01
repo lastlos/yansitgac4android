@@ -1,0 +1,17 @@
+# AppImage derleme ortamı. Eski glibc'de derlenen program yeni dağıtımlarda da çalışır; tersi çalışmaz.
+#   debian:12 → Pardus 23 / ETAP 23 (glibc 2.36)
+#   debian:11 → Pardus 21 / ETAP 21 (glibc 2.31)
+ARG TABAN=docker.io/library/debian:12
+FROM ${TABAN}
+# Debian 11 desteği bitti (2026-08): deb.debian.org'daki güvenlik paketleri kaldırıldı, imajdaki
+# paketler ise o güncellemeleri içeriyor. İmajın kendi sources.list'inde yorum olarak duran, imaj
+# tarihine sabitlenmiş snapshot.debian.org depolarını aç → paket sürümleri tutarlı kalır.
+RUN if grep -q bullseye /etc/apt/sources.list 2>/dev/null; then \
+        sed -i -e 's|^deb http://deb.debian.org|# &|' \
+               -e 's|^# deb http://snapshot.debian.org|deb [check-valid-until=no] http://snapshot.debian.org|' \
+               /etc/apt/sources.list; \
+    fi
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential cmake pkg-config libgtk2.0-dev nasm curl ca-certificates \
+        xz-utils file librsvg2-common \
+    && rm -rf /var/lib/apt/lists/*

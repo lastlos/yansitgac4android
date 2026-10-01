@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Basit simge: telefon çerçevesi ve ondan çıkan yansıma oku. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#FF2B6CB0"
+        android:pathData="M8,2h32a6,6 0,0 1,6 6v32a6,6 0,0 1,-6 6h-32a6,6 0,0 1,-6 -6v-32a6,6 0,0 1,6 -6z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M12,9h12a2,2 0,0 1,2 2v26a2,2 0,0 1,-2 2h-12a2,2 0,0 1,-2 -2v-26a2,2 0,0 1,2 -2zM13,12v22h10v-22z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M29,21h8v-4l7,7l-7,7v-4h-8z" />
+</vector>

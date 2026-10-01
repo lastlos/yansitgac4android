@@ -1,0 +1,40 @@
+#!/bin/sh
+# Yansıtgaç AppImage başlatıcısı.
+#
+# Sistemde GTK2 varsa SİSTEMİN kütüphaneleri kullanılır: sistemin GTK modülleri (gail, atk-bridge),
+# tema motorları ve giriş yöntemleri sistemin GLib'iyle derlendiği için ancak onunla uyumludur.
+# (Gömülü eski GLib ile sistem modülü karışınca "undefined symbol: g_once_init_enter_pointer"
+# gibi hatalarla çöküyordu — Mint 22'de görüldü.)
+#
+# GTK2 yoksa gömülü kütüphaneler (usr/lib/yedek) kullanılır ve sistemden modül yüklenmesi engellenir.
+# Gömülü yığını zorlamak için: YANSITGAC_GOMULU_GTK=1
+
+BURASI="$(dirname "$(readlink -f "$0")")"
+export APPDIR="${APPDIR:-$BURASI}"
+PROGRAM="$APPDIR/usr/bin/yansitgac"
+YEDEK="$APPDIR/usr/lib/yedek"
+
+sistemde_gtk2_var() {
+    command -v ldd >/dev/null 2>&1 || return 1
+    CIKTI="$(ldd "$PROGRAM" 2>/dev/null)" || return 1
+    case "$CIKTI" in *"not found"*) return 1 ;; esac
+    return 0
+}
+
+if [ -n "$YANSITGAC_GOMULU_GTK" ] || ! sistemde_gtk2_var; then
+    export LD_LIBRARY_PATH="$YEDEK${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+    # Sistemdeki (başka GLib'e bağlı) eklentileri yükleme:
+    unset GTK_MODULES GTK2_MODULES
+    export NO_AT_BRIDGE=1                                   # erişilebilirlik köprüsü
+    export GTK2_RC_FILES="$APPDIR/usr/share/yansitgac/gtkrc" # tema motoru isteyen gtkrc'ler yerine
+    export GTK_PATH="$YEDEK/gtk-2.0"
+    export GTK_IM_MODULE_FILE="$APPDIR/usr/share/yansitgac/bos"   # ibus/fcitx modülleri
+    export GDK_PIXBUF_MODULE_FILE="$APPDIR/usr/share/yansitgac/bos"
+    export GIO_MODULE_DIR="$YEDEK/gio-modulleri-yok"         # dconf/gvfs modülleri
+    export GIO_USE_VFS=local
+    export YANSITGAC_GTK=gomulu
+else
+    export YANSITGAC_GTK=sistem
+fi
+
+exec "$PROGRAM" "$@"

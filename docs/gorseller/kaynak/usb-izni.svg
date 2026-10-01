@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="600" viewBox="0 0 420 600" font-family="DejaVu Sans, Noto Sans, sans-serif">
+  <!-- Yansıtgaç README: telefon ilk bağlandığında çıkan "USB hata ayıklamaya izin verilsin mi?" sorusu -->
+  <rect width="420" height="600" fill="#ffffff"/>
+  <g transform="translate(60,30)">
+    <rect x="0" y="0" width="300" height="540" rx="34" fill="#1f2933"/>
+    <rect x="12" y="44" width="276" height="452" rx="6" fill="#7b8794"/>
+    <rect x="120" y="18" width="60" height="8" rx="4" fill="#3e4c59"/>
+    <circle cx="150" cy="518" r="11" fill="none" stroke="#52606d" stroke-width="3"/>
+
+    <!-- iletişim kutusu -->
+    <rect x="26" y="140" width="248" height="262" rx="16" fill="#ffffff"/>
+    <text x="44" y="178" font-size="16" font-weight="bold" fill="#1f2933">USB hata ayıklamaya</text>
+    <text x="44" y="199" font-size="16" font-weight="bold" fill="#1f2933">izin verilsin mi?</text>
+    <text x="44" y="230" font-size="12" fill="#52606d">Bilgisayarın RSA anahtarı</text>
+    <text x="44" y="246" font-size="12" fill="#52606d">parmak izi: 3F:A1:…:9C</text>
+
+    <rect x="36" y="268" width="228" height="44" rx="8" fill="#dbeafe" stroke="#2b6cb0" stroke-width="2"/>
+    <rect x="46" y="280" width="20" height="20" rx="3" fill="#2b6cb0"/>
+    <path d="M50 290 l5 5 l8 -10" fill="none" stroke="#ffffff" stroke-width="3"/>
+    <text x="74" y="287" font-size="12" fill="#1e4e8c">Bu bilgisayardan her</text>
+    <text x="74" y="303" font-size="12" fill="#1e4e8c">zaman izin ver</text>
+
+    <text x="120" y="370" text-anchor="middle" font-size="14" fill="#52606d">İptal</text>
+    <rect x="170" y="348" width="88" height="36" rx="18" fill="#2b6cb0"/>
+    <text x="214" y="371" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff">İzin ver</text>
+  </g>
+</svg>

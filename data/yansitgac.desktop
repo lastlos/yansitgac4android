@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Yansıtgaç
+Comment=USB ile bağlı Android telefonun ekranını gösterir
+Exec=yansitgac
+Icon=yansitgac
+Categories=Utility;
+Terminal=false

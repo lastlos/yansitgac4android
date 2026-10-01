@@ -1,0 +1,20 @@
+build/
+dist/
+third_party/ffmpeg/
+Yansıtgaç-Android/.gradle/
+Yansıtgaç-Android/build/
+Yansıtgaç-Android/app/build/
+Yansıtgaç-Android/local.properties
+build-*/
+Yansıtgaç-Android/imza/
+.vscode/
+
+# Geliştirme notları (yayınlanmaz)
+CLAUDE.md
+plan.md
+oturumlar/
+.claude/
+forotheragent.md
+
+# Kök dizine bırakılan ekran görüntüleri (README görselleri docs/gorseller/ altında)
+/*.png
